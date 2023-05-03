@@ -6,20 +6,20 @@ from random import randint, uniform
 print('p')
 
 #Definicion de conjuntos#
-Plantas = range(22)
+Plantas = range(23)
 Tiempo = range(300)
 Region = range(16)
-Metales = range(30)
+Metales = range(10)
 
 #Parametros
 
 #Parametros rel. con agua desalinizada y plantas
 a = {(i,r): randint(0,1) for i in Plantas for r in Region}
-
-cnt = {(i,t): randint(60, 100) for i in Plantas for t in Tiempo}
-ca = {(i,t): randint(50, 180) for i in Plantas for t in Tiempo}
+#a = {(0, 0): 1, (0, 1): 0, (1, 0): 0, (1, 1): 1}
+cnt = {(i,t): randint(80, 200) for i in Plantas for t in Tiempo}
+ca = {(i,t): randint(120, 180) for i in Plantas for t in Tiempo}
 d = {(r,t): randint(12500, 20000) for r in Region for t in Tiempo}
-l = {(i,t): randint(10000, 12000) for i in Plantas for t in Tiempo}
+l = {i: randint(200000, 400000) for i in Plantas}
 m = {(i,t): randint(40, 100) for i in Plantas for t in Tiempo}
 cta = {(i,t): randint(20, 50) for i in Plantas for t in Tiempo}
 ctr = {(i,t): randint(20, 40) for i in Plantas for t in Tiempo}
@@ -36,7 +36,7 @@ w = {(i,t): uniform(0.0005, 0.001) for i in Plantas for t in Tiempo}
 
 RP = 500
 ec = {(i,r): randint(0,1) for i in Plantas for r in Region}
-acu = {(i,t): uniform(0.00033,0.0005) for t in Tiempo for i in Plantas}
+acu = {(i,t): uniform(0.000033,0.00005) for t in Tiempo for i in Plantas}
 
 #Parametros relacionados con la contaminacion quimica
 
@@ -48,7 +48,7 @@ md = {(i,q,t): uniform(0.00002, 0.00006) for i in Plantas for q in Metales for t
 
 cii = {t: uniform(0.05, 0.1) for t in Tiempo}
 capi = {r: uniform(30000000, 500000000) for r in Region}
-M = 10**7
+M = 10**10
 
 
 
@@ -64,9 +64,8 @@ x = model.addVars(Plantas, Tiempo, vtype = GRB.CONTINUOUS, name = "x_it")
 h = model.addVars(Plantas, Tiempo, vtype = GRB.CONTINUOUS, name = "h_it")
 y = model.addVars(Plantas, Tiempo, vtype = GRB.CONTINUOUS, name = "y_it")
 i = model.addVars(Region, Tiempo, vtype = GRB.CONTINUOUS, name = "I_rt")
-z = model.addVars(Plantas, Tiempo, vtype = GRB.BINARY, name = "z_it")
+z = model.addVars(Plantas, vtype = GRB.BINARY, name = "z_i")
 zpl = model.addVars(Plantas, vtype = GRB.BINARY, name = "zpl_i")
-bar = model.addVars(Plantas, Tiempo, vtype = GRB.BINARY, name = "bar_it")
 
 
 model.update()
@@ -87,9 +86,9 @@ model.addConstrs((y[i,t] <= aa[i,t] for i in Plantas for t in Tiempo), name = "R
 model.addConstrs((y[i,t] >= 0.6 * x[i,t] for i in Plantas for t in Tiempo), name = "R6.1")
 model.addConstrs((y[i,t] >= 0.8 * h[i,t] for i in Plantas for t in Tiempo), name = "R6.2")
 
-model.addConstrs((h[i,t] <= M * bar[i,t] for i in Plantas for t in Tiempo),name = "R7.1")
-model.addConstrs( (1 - bar[i,t] >= quicksum(z[i,h] for h in range(t, max(Tiempo) + 1 )) for t in Tiempo for i in Plantas), name = "R7.2")
-model.addConstrs((quicksum(z[i,t] for t in Tiempo) <= 1 for i in Plantas), name = "R7.3")
+model.addConstrs((h[i,t] <= M * z[i] for i in Plantas for t in Tiempo),name = "R7.1")
+model.addConstrs( (x[i,t] <= M * (1 - z[i]) for i in Plantas for t in Tiempo) , name = "R7.2")
+
 
 model.addConstrs((i[r,t] == i[r,t-1] + quicksum((x[i,t] + h[i,t]) * a[i,r] for i in Plantas) for t in range(2, max(Tiempo) + 1 ) for r in Region), name = "R8.1")
 model.addConstrs((i[r,1] == 0 + quicksum((x[i,1] + h[i,1]) * a[i,r] for i in Plantas) for r in Region), name = "R8.2")
@@ -99,7 +98,7 @@ model.addConstrs((i[r,t] <= capi[r] for r in Region for t in Tiempo), name = "R9
 
 #FUNCION OBJETIVO
 
-objetivo = quicksum(l[i,t] * z[i,t] + h[i,t] * cnt[i,t] + ctr[i,t] * x[i,t] + m[i,t] * (x[i,t] + h[i,t]) + ca[i,t] * x[i,t] + cta[i,t] * y[i,t] + ce[i,t] * w[i,t] * (x[i,t] + h[i,t]) + cf[i,t] for i in Plantas for t in Tiempo) + quicksum(i[r,t] * cii[t] for t in Tiempo for r in Region)
+objetivo = quicksum ( l[i] * z[i] + quicksum(h[i,t] * cnt[i,t] + ctr[i,t] * x[i,t] + m[i,t] * (x[i,t] + h[i,t]) + ca[i,t] * x[i,t] + cta[i,t] * y[i,t] + ce[i,t] * w[i,t] * (x[i,t] + h[i,t]) + cf[i,t] for t in Tiempo) for i in Plantas) + quicksum(i[r,t] * cii[t] for t in Tiempo for r in Region)
 model.setObjective(objetivo, GRB.MINIMIZE)
 
 #OPTIMIZA
@@ -107,7 +106,7 @@ model.setObjective(objetivo, GRB.MINIMIZE)
 model.optimize()
 
 #ATRIBUTOS
-model.printAttr("X")
+#model.printAttr("X")
 
 #model.printAttr("X")
 
