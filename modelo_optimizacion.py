@@ -32,12 +32,12 @@ cam = 10**7
 
 #Parametros relacionados con energia
 ce = {(i,t): randint(5, 10) for i in Plantas for t in Tiempo}
-gem = {(i,t): randint(500, 1000) for i in Plantas for t in Tiempo}
+gem = 10**7
 w = {(i,t): uniform(0.0005, 0.001) for i in Plantas for t in Tiempo}
 
 #Parametros relacionados con ruido y zona urbana
 
-RP = 500
+RP = 125*365
 ec = {(i,r): randint(0,1) for i in Plantas for r in Region}
 acu = {(i,t): uniform(0.000033,0.00005) for t in Tiempo for i in Plantas}
 
@@ -84,7 +84,7 @@ model.addConstrs((acu[i,t] * (x[i,t] + h[i,t]) * ec[i,r] <= RP for i in Plantas 
 
 model.addConstrs((md[i,q,t] * (x[i,t] + h[i,t]) <= (zpl[i] * dd[q]) + df[q] * (1 - zpl[i]) for i in Plantas for t in Tiempo for q in Metales), name = "R3" )
 
-model.addConstrs(((x[i,t] + h[i,t]) * w[i,t] <= gem[i,t] for i in Plantas for t in Tiempo), name = "R4" )
+model.addConstrs(((x[i,t] + h[i,t]) * w[i,t] <= gem for i in Plantas for t in Tiempo), name = "R4" )
 
 model.addConstrs((y[i,t] <= cam for i in Plantas for t in Tiempo), name = "R5.1")
 model.addConstrs((y[i,t] <= aa[i] for i in Plantas for t in Tiempo), name = "R5.2")
@@ -96,7 +96,7 @@ model.addConstrs((h[i,t] <= M * z[i] for i in Plantas for t in Tiempo),name = "R
 model.addConstrs( (x[i,t] <= M * (1 - z[i]) for i in Plantas for t in Tiempo) , name = "R7.2")
 
 
-model.addConstrs((i[r,t] == i[r,t-1] + quicksum((x[i,t] + h[i,t]) * a[i,r] for i in Plantas) for t in range(2, max(Tiempo) + 1 ) for r in Region), name = "R8.1")
+model.addConstrs((i[r,t] == i[r,t-1] + quicksum((x[i,t] + h[i,t]) * a[i,r] for i in Plantas) for t in range(2, len(Tiempo) + 1 ) for r in Region), name = "R8.1")
 model.addConstrs((i[r,1] == 0 + quicksum((x[i,1] + h[i,1]) * a[i,r] for i in Plantas) for r in Region), name = "R8.2")
 
 model.addConstrs((i[r,t] <= capi[r] for r in Region for t in Tiempo), name = "R9")
