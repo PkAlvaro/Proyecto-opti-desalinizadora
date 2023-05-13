@@ -1,0 +1,301 @@
+Tiempo,Region,Demanda
+1,Arica,87635
+1,Tarapacá,95149
+1,Antofagasta,266153
+1,Atacama,198114
+1,Coquimbo,555979
+1,Valparaiso,1073979
+1,Metropolitana,2058589
+1,O'higgins,1895558
+1,Maule,2927192
+1,BioBío,1135928
+1,Araucania,277474
+1,Los Rios,114223
+1,Los Lagos,188597
+1,Aysén,12656
+1,Magallenes,21506
+2,Arica,92469
+2,Tarapacá,98513
+2,Antofagasta,246467
+2,Atacama,211000
+2,Coquimbo,648684
+2,Valparaiso,1090291
+2,Metropolitana,2123598
+2,O'higgins,1968405
+2,Maule,2760370
+2,BioBío,1141537
+2,Araucania,284740
+2,Los Rios,127058
+2,Los Lagos,198533
+2,Aysén,12767
+2,Magallenes,21558
+3,Arica,90708
+3,Tarapacá,100564
+3,Antofagasta,255813
+3,Atacama,254653
+3,Coquimbo,782707
+3,Valparaiso,1099637
+3,Metropolitana,2076236
+3,O'higgins,1987203
+3,Maule,2813895
+3,BioBío,1149350
+3,Araucania,292036
+3,Los Rios,160338
+3,Los Lagos,212151
+3,Aysén,12887
+3,Magallenes,24792
+4,Arica,91905
+4,Tarapacá,98885
+4,Antofagasta,246370
+4,Atacama,216567
+4,Coquimbo,738894
+4,Valparaiso,1086157
+4,Metropolitana,2111970
+4,O'higgins,2029226
+4,Maule,2845074
+4,BioBío,1144664
+4,Araucania,293985
+4,Los Rios,129978
+4,Los Lagos,216104
+4,Aysén,12849
+4,Magallenes,23508
+5,Arica,97192
+5,Tarapacá,98053
+5,Antofagasta,262804
+5,Atacama,221625
+5,Coquimbo,691586
+5,Valparaiso,1095473
+5,Metropolitana,2102782
+5,O'higgins,1979454
+5,Maule,2847151
+5,BioBío,1136716
+5,Araucania,278075
+5,Los Rios,200499
+5,Los Lagos,223988
+5,Aysén,12819
+5,Magallenes,22741
+6,Arica,93118
+6,Tarapacá,97205
+6,Antofagasta,264005
+6,Atacama,254544
+6,Coquimbo,712078
+6,Valparaiso,1090292
+6,Metropolitana,2108076
+6,O'higgins,1900043
+6,Maule,2863422
+6,BioBío,1148976
+6,Araucania,281468
+6,Los Rios,166956
+6,Los Lagos,228611
+6,Aysén,12691
+6,Magallenes,24402
+7,Arica,96974
+7,Tarapacá,97020
+7,Antofagasta,261347
+7,Atacama,215530
+7,Coquimbo,731057
+7,Valparaiso,1103390
+7,Metropolitana,2110412
+7,O'higgins,1953942
+7,Maule,2862547
+7,BioBío,1152987
+7,Araucania,286716
+7,Los Rios,185669
+7,Los Lagos,247921
+7,Aysén,12668
+7,Magallenes,21937
+8,Arica,92901
+8,Tarapacá,96868
+8,Antofagasta,259635
+8,Atacama,204949
+8,Coquimbo,560169
+8,Valparaiso,1088142
+8,Metropolitana,2092861
+8,O'higgins,1973491
+8,Maule,2741019
+8,BioBío,1136052
+8,Araucania,284474
+8,Los Rios,157143
+8,Los Lagos,199436
+8,Aysén,12778
+8,Magallenes,22562
+9,Arica,96602
+9,Tarapacá,95930
+9,Antofagasta,257862
+9,Atacama,242410
+9,Coquimbo,734770
+9,Valparaiso,1090308
+9,Metropolitana,2137981
+9,O'higgins,1970107
+9,Maule,2658328
+9,BioBío,1150194
+9,Araucania,283337
+9,Los Rios,129899
+9,Los Lagos,195052
+9,Aysén,12658
+9,Magallenes,24067
+10,Arica,97272
+10,Tarapacá,102421
+10,Antofagasta,235912
+10,Atacama,257508
+10,Coquimbo,830328
+10,Valparaiso,1103489
+10,Metropolitana,2161802
+10,O'higgins,2042757
+10,Maule,2631484
+10,BioBío,1155224
+10,Araucania,296116
+10,Los Rios,201318
+10,Los Lagos,250389
+10,Aysén,12888
+10,Magallenes,24904
+11,Arica,100123
+11,Tarapacá,104937
+11,Antofagasta,229034
+11,Atacama,262976
+11,Coquimbo,897690
+11,Valparaiso,1139807
+11,Metropolitana,2176007
+11,O'higgins,2079217
+11,Maule,2615185
+11,BioBío,1167892
+11,Araucania,303489
+11,Los Rios,242270
+11,Los Lagos,266752
+11,Aysén,14016
+11,Magallenes,25293
+12,Arica,98481
+12,Tarapacá,106350
+12,Antofagasta,234592
+12,Atacama,262033
+12,Coquimbo,837963
+12,Valparaiso,1134472
+12,Metropolitana,2217748
+12,O'higgins,2046638
+12,Maule,1160441
+12,BioBío,1258851
+12,Araucania,305678
+12,Los Rios,240172
+12,Los Lagos,257963
+12,Aysén,14498
+12,Magallenes,24970
+13,Arica,98518
+13,Tarapacá,106236
+13,Antofagasta,231989
+13,Atacama,257515
+13,Coquimbo,833344
+13,Valparaiso,1109147
+13,Metropolitana,2288598
+13,O'higgins,2130731
+13,Maule,1206694
+13,BioBío,1225838
+13,Araucania,306111
+13,Los Rios,219412
+13,Los Lagos,254431
+13,Aysén,13646
+13,Magallenes,24934
+14,Arica,98416
+14,Tarapacá,107815
+14,Antofagasta,232269
+14,Atacama,259339
+14,Coquimbo,832866
+14,Valparaiso,1151675
+14,Metropolitana,2257911
+14,O'higgins,2139315
+14,Maule,1270862
+14,BioBío,1192691
+14,Araucania,300096
+14,Los Rios,220714
+14,Los Lagos,274104
+14,Aysén,14255
+14,Magallenes,24915
+15,Arica,99056
+15,Tarapacá,109831
+15,Antofagasta,235146
+15,Atacama,258204
+15,Coquimbo,834181
+15,Valparaiso,1117519
+15,Metropolitana,2250957
+15,O'higgins,2144856
+15,Maule,1248650
+15,BioBío,1225085
+15,Araucania,307990
+15,Los Rios,217878
+15,Los Lagos,263900
+15,Aysén,13576
+15,Magallenes,25138
+16,Arica,98592
+16,Tarapacá,104540
+16,Antofagasta,228948
+16,Atacama,261967
+16,Coquimbo,869910
+16,Valparaiso,1127724
+16,Metropolitana,2165504
+16,O'higgins,2072563
+16,Maule,1237592
+16,BioBío,1274291
+16,Araucania,306561
+16,Los Rios,239118
+16,Los Lagos,258748
+16,Aysén,13401
+16,Magallenes,25400
+17,Arica,99299
+17,Tarapacá,107122
+17,Antofagasta,235266
+17,Atacama,261487
+17,Coquimbo,863782
+17,Valparaiso,1135266
+17,Metropolitana,2273099
+17,O'higgins,2068713
+17,Maule,1247755
+17,BioBío,1244049
+17,Araucania,300541
+17,Los Rios,245439
+17,Los Lagos,260711
+17,Aysén,14494
+17,Magallenes,24907
+18,Arica,100543
+18,Tarapacá,103888
+18,Antofagasta,231456
+18,Atacama,261001
+18,Coquimbo,858703
+18,Valparaiso,1144432
+18,Metropolitana,2272887
+18,O'higgins,2157497
+18,Maule,1199437
+18,BioBío,1263590
+18,Araucania,297225
+18,Los Rios,250919
+18,Los Lagos,253909
+18,Aysén,13759
+18,Magallenes,25371
+19,Arica,100783
+19,Tarapacá,108039
+19,Antofagasta,235623
+19,Atacama,262006
+19,Coquimbo,897961
+19,Valparaiso,1131610
+19,Metropolitana,2230296
+19,O'higgins,2162847
+19,Maule,1275004
+19,BioBío,1226429
+19,Araucania,302183
+19,Los Rios,236982
+19,Los Lagos,258309
+19,Aysén,14335
+19,Magallenes,25416
+20,Arica,101226
+20,Tarapacá,110103
+20,Antofagasta,227924
+20,Atacama,264733
+20,Coquimbo,902744
+20,Valparaiso,1153939
+20,Metropolitana,2299300
+20,O'higgins,2170798
+20,Maule,2581096
+20,BioBío,1275241
+20,Araucania,308878
+20,Los Rios,254004
+20,Los Lagos,278494
+20,Aysén,14505
+20,Magallenes,25648
