@@ -3,22 +3,17 @@ import gurobipy as gp
 from gurobipy import quicksum
 from random import randint, uniform
 
-print('p')
 
 #Definicion de conjuntos#
 Plantas = range(23)
 Tiempo = range(20)
-Region = range(16)
-Metales = range(8)
+Region = range(15)
+Metales = range(15)
 
 #Parametros
 
 #Parametros rel. con agua desalinizada y plantas
 a = {(i,r): randint(0,1) for i in Plantas for r in Region}
-
-#a = {(0, 0): 1, (0, 1): 0, (0, 2): 0, (0, 3): 0, (0, 4): 0, (1, 0): 0, (1, 1): 1, (1, 2): 0, (1, 3): 0, (1, 4): 0, (2, 0): 0, (2, 1): 0, (2, 2): 1, (2, 3): 0, (2, 4): 0, (3, 0): 0, (3, 1): 0, (3, 2): 0, (3, 3): 1, (3, 4): 0, (4, 0): 0, (4, 1): 0, (4, 2): 0, (4, 3): 0, (4, 4): 1}
-
-#a = {(0, 0): 1, (0, 1): 0, (1, 0): 0, (1, 1): 1}
 cnt = {(i,t): randint(80, 200) for i in Plantas for t in Tiempo}
 ca = {(i,t): randint(120, 180) for i in Plantas for t in Tiempo}
 d = {(r,t): randint(12500, 20000) for r in Region for t in Tiempo}
@@ -29,7 +24,7 @@ ctr = {(i,t): randint(20, 40) for i in Plantas for t in Tiempo}
 cf = {(i,t): randint(5, 10) for i in Plantas for t in Tiempo}
 aa = {i: randint(1500000, 3000000) for i in Plantas}
 cam = 10**7
-
+print(l , "Osssss")
 #Parametros relacionados con energia
 ce = {(i,t): randint(5, 10) for i in Plantas for t in Tiempo}
 gem = 10**7
@@ -45,7 +40,7 @@ acu = {(i,t): uniform(0.000033,0.00005) for t in Tiempo for i in Plantas}
 
 dd = {q: randint(20, 60) for q in Metales}
 df = {q: randint(40, 80) for q in Metales}
-md = {(i,q,t): uniform(0.00002, 0.00006) for i in Plantas for q in Metales for t in Tiempo}
+md = {(i): uniform(0.00002, 0.00006) for i in Plantas for q in Metales for t in Tiempo}
 
 #Parametros relacionados con el inventario
 
@@ -55,8 +50,8 @@ M = 10**7
 
 #Parametros zpl
 
-cd = {(i,q): randint(500, 800) for i in Plantas for q in Metales}
-cff = {(i,q): randint(600, 800) for i in Plantas for q in Metales}
+cdz = {(i,q): randint(500, 800) for i in Plantas for q in Metales}
+cfz = {(i,q): randint(600, 800) for i in Plantas for q in Metales}
 
 
 
@@ -82,7 +77,7 @@ model.addConstrs((quicksum((x[i,t] + h[i,t]) * a[i,r] for i in Plantas) >= d[r,t
 
 model.addConstrs((acu[i,t] * (x[i,t] + h[i,t]) * ec[i,r] <= RP for i in Plantas for t in Tiempo for r in Region), name = "R2" ) 
 
-model.addConstrs((md[i,q,t] * (x[i,t] + h[i,t]) <= (zpl[i] * dd[q]) + df[q] * (1 - zpl[i]) for i in Plantas for t in Tiempo for q in Metales), name = "R3" )
+model.addConstrs((md[i] * (x[i,t] + h[i,t]) <= (zpl[i] * dd[q]) + df[q] * (1 - zpl[i]) for i in Plantas for t in Tiempo for q in Metales), name = "R3" )
 
 model.addConstrs(((x[i,t] + h[i,t]) * w[i,t] <= gem for i in Plantas for t in Tiempo), name = "R4" )
 
@@ -96,7 +91,7 @@ model.addConstrs((h[i,t] <= M * z[i] for i in Plantas for t in Tiempo),name = "R
 model.addConstrs( (x[i,t] <= M * (1 - z[i]) for i in Plantas for t in Tiempo) , name = "R7.2")
 
 
-model.addConstrs((i[r,t] == i[r,t-1] + quicksum((x[i,t] + h[i,t]) * a[i,r] for i in Plantas) for t in range(2, len(Tiempo) + 1 ) for r in Region), name = "R8.1")
+model.addConstrs((i[r,t] == i[r,t-1] + quicksum((x[i,t] + h[i,t]) * a[i,r] for i in Plantas) for t in range(2, max(Tiempo) + 1) for r in Region), name = "R8.1")
 model.addConstrs((i[r,1] == 0 + quicksum((x[i,1] + h[i,1]) * a[i,r] for i in Plantas) for r in Region), name = "R8.2")
 
 model.addConstrs((i[r,t] <= capi[r] for r in Region for t in Tiempo), name = "R9")
@@ -104,7 +99,7 @@ model.addConstrs((i[r,t] <= capi[r] for r in Region for t in Tiempo), name = "R9
 
 #FUNCION OBJETIVO
 
-objetivo = quicksum ( l[i] * z[i] + quicksum(h[i,t] * cnt[i,t] + m[i,t] * (x[i,t] + h[i,t]) + ca[i,t] * x[i,t] + cta[i,t] * y[i,t] + ce[i,t] * w[i,t] * (x[i,t] + h[i,t]) + cf[i,t] for t in Tiempo) for i in Plantas) + quicksum(i[r,t] * cii[t] for t in Tiempo for r in Region) + quicksum(zpl[i]*cd[i,q] + (1 - zpl[i])*cff[i,q] for i in Plantas for q in Metales)
+objetivo = quicksum ( l[i] * z[i] + quicksum(h[i,t] * cnt[i,t] + m[i,t] * (x[i,t] + h[i,t]) + ca[i,t] * x[i,t] + cta[i,t] * y[i,t] + ce[i,t] * w[i,t] * (x[i,t] + h[i,t]) + cf[i,t] for t in Tiempo) for i in Plantas) + quicksum(i[r,t] * cii[t] for t in Tiempo for r in Region) + quicksum(zpl[i]*cdz[i,q] + (1 - zpl[i])*cfz[i,q] for i in Plantas for q in Metales)
 model.setObjective(objetivo, GRB.MINIMIZE)
 
 
