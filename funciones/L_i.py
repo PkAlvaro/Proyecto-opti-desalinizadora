@@ -7,4 +7,4 @@ with open("datos/L_i.csv", newline='') as L_i:
     for i in lineas:
         costo.append([int(i["Planta"]), int(i["Costo Inversion"])])
 
-print(costo)
+li = {i: costo[i - 1][1] for i in range(1, 24)}

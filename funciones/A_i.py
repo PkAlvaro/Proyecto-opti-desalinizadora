@@ -8,7 +8,6 @@ with open("datos/A_i.csv", newline='') as A_i:
         capacidad.append([int(i["Planta"]), int(i["Capacidad agua de mar"])])
 
 
-
-print(capacidad)
+ai = {i: capacidad[i - 1][1] for i in range(1, 24)}
 
 

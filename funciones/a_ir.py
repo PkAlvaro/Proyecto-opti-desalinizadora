@@ -16,7 +16,5 @@ def a_ir():
 
     return a_data
 
-
 a_data = a_ir()
-d = {(i, r): a_data[i][r][1] for i in range(1, 24) for r in range(1, 16)}
-print(d)
+air = {(i, r): a_data[i][r][1] for i in range(1, 24) for r in range(1, 16)}
