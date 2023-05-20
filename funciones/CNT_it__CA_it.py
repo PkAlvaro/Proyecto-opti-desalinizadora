@@ -6,7 +6,7 @@ def cnt():
     cnt = {}
     for indice, fila in df.iterrows():
         clave = (fila[0], fila[1])
-        valorcnt = float(fila[2].replace(',', '.'))
+        valorcnt = float(fila[2])
         cnt[clave] = valorcnt
     return cnt
 
@@ -16,6 +16,6 @@ def ca():
     ca = {}
     for indice, fila in df.iterrows():
         clave = (fila[0], fila[1])
-        valorca = float(fila[3].replace(',', '.'))
+        valorca = float(fila[3])
         ca[clave] = valorca
     return ca
