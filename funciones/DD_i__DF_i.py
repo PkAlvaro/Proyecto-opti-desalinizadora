@@ -18,7 +18,7 @@ def dd_i():
     df = pd.read_csv("datos/DD_i y DF_i.csv", header=None, skiprows=1)
     datos_procesados = {}
     for indice, fila in df.iterrows():
-        clave = fila[0]
+        clave = int(fila[0])
         valor = float(fila[1])
         datos_procesados[clave] = valor
     return datos_procesados
@@ -27,7 +27,7 @@ def df_i():
     df = pd.read_csv("datos/DD_i y DF_i.csv", header=None, skiprows=1)
     datos_procesados = {}
     for indice, fila in df.iterrows():
-        clave = fila[0]
+        clave = int(fila[0])
         valor = float(fila[2])
         datos_procesados[clave] = valor
     return datos_procesados

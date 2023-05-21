@@ -2,7 +2,7 @@ from gurobipy import GRB
 import gurobipy as gp
 from gurobipy import quicksum
 from random import randint, uniform, seed
-from funciones import CDZ_i__CFZ_i, MDA_i__MDN_i, a_ir ,a_r, A_i, ACU_it, CAPI_r, CE_it, CF_it, CI_t, CNT_it__CA_it, CTA_it, D_rt, DD_q__DF_q, EC_ir, L_i, M_it, W_it
+from funciones import CDZ_i__CFZ_i, MDA_i__MDN_i, a_ir ,a_r, A_i, ACU_it, CAPI_r, CE_it, CF_it, CI_t, CNT_it__CA_it, CTA_it, D_rt, DD_i__DF_i, EC_ir, L_i, M_it, W_it
 
 # seed(8)
 
@@ -59,12 +59,16 @@ acu = ACU_it.acu
 ##########################################################
 
 
-dd = DD_q__DF_q.dd_i()
-df = DD_q__DF_q.df_i()
+dd = DD_i__DF_i.dd_i()
+df = DD_i__DF_i.df_i()
 # dd = {i: randint(500000, 900000) for i in Plantas} #no hay metales
 # df = {i: randint(400000, 900000) for i in Plantas} #no hay metales
-cdz = CDZ_i__CFZ_i.cdz_i()
-cfz = CDZ_i__CFZ_i.cfz_i()
+
+# cdz = CDZ_i__CFZ_i.cdz_i()
+# cfz = CDZ_i__CFZ_i.cfz_i()
+cdz = CDZ_i__CFZ_i.cdz_i2()
+cfz = CDZ_i__CFZ_i.cfz_i2()
+
 # cdz = {i: uniform(0.00000024, 0.00000040) for i in Plantas}
 # cfz = {i: uniform(0.00000048, 0.00000080) for i in Plantas}
 mda = MDA_i__MDN_i.mda_i()
