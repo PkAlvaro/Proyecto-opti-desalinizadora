@@ -30,11 +30,22 @@
 
 import pandas as pd
 
-def cdz():
-    df = pd.read_csv("datos/W_i,t.csv", header=None, skiprows=1)
-    datos_procesados = {}
+#pip install pandas
+def cdz_i():
+    df = pd.read_csv("datos\CDZ_i y CFZ_i.csv", header=None, skiprows=1)
+    cnt = {}
     for indice, fila in df.iterrows():
-        clave = (fila[0], fila[1])
-        valor = float(fila[2])
-        datos_procesados[clave] = valor
-    return datos_procesados
+        clave = fila[0]
+        valorcnt = int(fila[1])
+        cnt[clave] = valorcnt
+    return cnt
+
+
+def cfz_i():
+    df = pd.read_csv("datos\CDZ_i y CFZ_i.csv", header=None, skiprows=1)
+    ca = {}
+    for indice, fila in df.iterrows():
+        clave = fila[0]
+        valorca = float(fila[2])
+        ca[clave] = valorca
+    return ca
