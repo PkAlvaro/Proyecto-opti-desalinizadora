@@ -101,8 +101,8 @@ model.update()
 
 #RESTRICCIONES
 
-model.addConstrs((quicksum((x[i,t] + h[i,t]) * air[i,r] for i in Plantas) + ii[r,t-1] >= d[r,t] * a[r] for t in range(2, 20 + 1) for r in Region), name = "R1.1" )
-model.addConstrs((quicksum((x[i,1] + h[i,1]) * air[i,r] for i in Plantas) >= d[r,1] * a[r] for r in Region), name = "R1.2" ) #añadida
+# model.addConstrs((quicksum((x[i,t] + h[i,t]) * air[i,r] for i in Plantas) + ii[r,t-1] >= d[r,t] * a[r] for t in range(2, 20 + 1) for r in Region), name = "R1.1" )
+# model.addConstrs((quicksum((x[i,1] + h[i,1]) * air[i,r] for i in Plantas) >= d[r,1] * a[r] for r in Region), name = "R1.2" ) #añadida
 
 model.addConstrs(((acu[i,t] * (x[i,t] + h[i,t]) * ec[i,r])/(365) <= RP for i in Plantas for t in Tiempo for r in Region), name = "R2" ) 
 
