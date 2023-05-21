@@ -6,6 +6,6 @@ def a_ir():
     datos_procesados = {}
     for indice, fila in df.iterrows():
         clave = (fila[0], fila[1])
-        valor = int(fila[2])
+        valor = float(fila[2])
         datos_procesados[clave] = valor
     return datos_procesados

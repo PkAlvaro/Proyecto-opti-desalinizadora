@@ -36,7 +36,7 @@ def cdz_i():
     cnt = {}
     for indice, fila in df.iterrows():
         clave = fila[0]
-        valorcnt = int(fila[1])
+        valorcnt = float(fila[1])
         cnt[clave] = valorcnt
     return cnt
 

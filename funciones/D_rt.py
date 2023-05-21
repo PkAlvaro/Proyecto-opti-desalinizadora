@@ -6,7 +6,7 @@ def d_rt():
     datos_procesados = {}
     for indice, fila in df.iterrows():
         clave = (fila[1], fila[0])
-        valor = int(fila[2])*(10**18)
+        valor = float(fila[2]) #*(10**18)
         datos_procesados[clave] = valor
     return datos_procesados
 

@@ -17,4 +17,4 @@ def acu_it():
     return a_data
 
 a_data = acu_it()
-acu = {(i, t): a_data[i][t][1] for i in range(1, 24) for t in range(1, 21)}
+acu = {(i, t): (a_data[i][t][1])/(10**6) for i in range(1, 24) for t in range(1, 21)}
