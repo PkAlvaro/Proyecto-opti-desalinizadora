@@ -1,6 +1,6 @@
 
 def EC_ir():
-    with open("datos/EC_i,r.csv") as a_data:
+    with open("datos/zona_urbana.csv") as a_data:
         a_data = a_data.readlines()[1:]
         for i in range(len(a_data)):
             a_data[i] = a_data[i].strip()

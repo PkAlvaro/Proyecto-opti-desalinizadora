@@ -2,7 +2,7 @@ import pandas as pd
 
 #pip install pandas
 def cnt():
-    df = pd.read_csv("datos\CNT_i,t y CA_i,t.csv", header=None, skiprows=1)
+    df = pd.read_csv("datos/costos_agua.csv", header=None, skiprows=1)
     cnt = {}
     for indice, fila in df.iterrows():
         clave = (fila[0], fila[1])
@@ -12,7 +12,7 @@ def cnt():
 
 
 def ca():
-    df = pd.read_csv("datos\CNT_i,t y CA_i,t.csv", header=None, skiprows=1)
+    df = pd.read_csv("datos/costos_agua.csv", header=None, skiprows=1)
     ca = {}
     for indice, fila in df.iterrows():
         clave = (fila[0], fila[1])

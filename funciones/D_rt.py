@@ -2,7 +2,7 @@ import pandas as pd
 
 
 def d_rt():
-    df = pd.read_csv("datos/D_r,t.csv", header=None, skiprows=1)
+    df = pd.read_csv("datos/demanda.csv", header=None, skiprows=1)
     datos_procesados = {}
     for indice, fila in df.iterrows():
         clave = (fila[1], fila[0])
@@ -13,3 +13,4 @@ def d_rt():
 
 if __name__ == "__main__":
     w = d_rt()
+    print(w)

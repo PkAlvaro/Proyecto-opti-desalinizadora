@@ -1,5 +1,5 @@
 def cf_it():
-    with open("datos/CF_i,t.csv") as a_data:
+    with open("datos/costo_fijo.csv") as a_data:
         a_data = a_data.readlines()[1:]
         for i in range(len(a_data)):
             a_data[i] = a_data[i].strip()
@@ -18,3 +18,6 @@ def cf_it():
 
 a_data = cf_it()
 cf = {(i, t): a_data[i][t][1] for i in range(1, 24) for t in range(1, 21)}
+
+if __name__ == "__main__":
+    print(cf)

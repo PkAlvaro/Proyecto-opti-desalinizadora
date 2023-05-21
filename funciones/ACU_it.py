@@ -1,6 +1,6 @@
 
 def acu_it():
-    with open("datos/ACU_i,t.csv") as a_data:
+    with open("datos/ruido.csv") as a_data:
         a_data = a_data.readlines()[1:]
         for i in range(len(a_data)):
             a_data[i] = a_data[i].strip()
