@@ -115,5 +115,40 @@ model.setObjective(objetivo, GRB.MINIMIZE)
 #OPTIMIZA
 model.optimize()
 
-#ATRIBUTOS
-model.printAttr("X")
+solucion_optima = model.ObjVal
+
+
+print('\n########################## COSTOS FINALES ##########################\n')
+
+
+print(f'\nEl gasto total que se realizo durante {len(Tiempo)} años, es {round(solucion_optima, 3)} MM $US.\n')
+
+region = {(r): ["Arica", "Tarapaca", "Antofagasta", "Atacama", "Coquimbo", "Valparaiso", "RM", "Bernardo Oh", "Maule", "Ñuble", "Bio Bio", "Araucania", "Los Rios", "Los Lagos", "Aysen", "Magallanes"][r] for r in range(1, 16)}
+
+print('\n########################## INVERSION ##########################\n')
+
+
+for i in Plantas:
+    if int(z[i].x) == 1:
+        print(f" La planta {i} invirtió en nueva tecnología en el periodo 1.")
+print("\nEl resto de las plantas decidió no invertir en nueva tecnología.")
+
+for t in Tiempo:
+    if t != 20 and t!= 1:
+        print( f'\n#################################################### AÑO {2020 + t} #################################################### \n')
+
+    for i in Plantas:
+        if int(z[i].x) == 1 and h[i,t].x > 0:
+            print(f'La planta {i} produjo {round(h[i,t].x, 3)} m^3 con nueva tecnologia en el año {2020 + t}, extrayendo {round(y[i,t].x, 3)} m^3 de agua de mar.')
+        elif int(z[i].x) == 0 and x[i,t].x > 0:
+            print(f'La planta {i} produjo {round(x[i,t].x, 3)} m^3 con antigua tecnologia en el año {2020 + t}, extrayendo {round(y[i,t].x, 3)} m^3 de agua de mar.')
+        
+    for r in Region:
+        if ii[r,t].x > 0:
+            print(f'En la región de {region[r]} se guarda {round(ii[r,t].x, 3)} m^3 de agua desalinizada en el año {2020 + t}.')
+
+print('\n################################ DESECHOS ################################\n')
+
+for i in Plantas:
+    if int(zpl[i].x) == 1:
+        print(f'La planta {i} emitira sus desechos dentro de la zona de proteccion litoral')
