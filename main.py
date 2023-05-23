@@ -11,9 +11,9 @@ Region = range(1, 16)
 
 # Parametros
 
-#################################################
+###################################################
 # Parametros rel. con agua desalinizada y plantas #
-#################################################
+###################################################
 
 air = a_ir.a_ir()
 a = a_r.ar()
@@ -27,25 +27,25 @@ cf = CF_it.cf
 aa = A_i.a_i()
 cam = 4000 * 365
 
-#####################################
-#Parametros relacionados con energia#
-#####################################
+#######################################
+# Parametros relacionados con energia #
+#######################################
 
 ce = CE_it.ce_it()
 gem = 1063194000
 w = W_it.w_it()
 
-#################################################
-# Parametros relacionados con ruido y zona urbana#
-#################################################
+###################################################
+# Parametros relacionados con ruido y zona urbana #
+###################################################
 
 RP = 125
 ec = EC_ir.ec
 acu = ACU_it.acu
 
-##########################################################
-# Parametros relacionados con la contaminacion de salmuera#
-##########################################################
+############################################################
+# Parametros relacionados con la contaminacion de salmuera #
+############################################################
 
 
 dd = DD_i__DF_i.dd_i()
@@ -56,17 +56,17 @@ mda = MDA_i__MDN_i.mda_i()
 mdn = MDA_i__MDN_i.mdn_i()
 
 
-##############################################
+#############################################
 # Parametros relacionados con el inventario #
-##############################################
+#############################################
 
 cii = CI_t.ci_t()
 capi = CAPI_r.capi_r()
 M = 10**10
 
-##########################################################
+#########################
 # Generación del modelo #
-##########################################################
+#########################
 
 model = gp.Model()
 model.setParam("TimeLimit", 300)
@@ -80,7 +80,7 @@ ii = model.addVars(Region, Tiempo, vtype = GRB.CONTINUOUS, name = "I_rt")
 z = model.addVars(Plantas, vtype = GRB.BINARY, name = "z_i")
 zpl = model.addVars(Plantas, vtype = GRB.BINARY, name = "zpl_i")
 
-##################
+
 model.update()
 
 #RESTRICCIONES
@@ -117,6 +117,10 @@ model.optimize()
 
 solucion_optima = model.ObjVal
 
+
+###########################
+# FUNCIONES DE RESULTADOS #
+###########################
 
 print('\n########################## COSTOS FINALES ##########################\n')
 
