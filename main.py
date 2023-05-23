@@ -62,6 +62,11 @@ mdn = MDA_i__MDN_i.mdn_i()
 
 cii = CI_t.ci_t()
 capi = CAPI_r.capi_r()
+
+#########
+# BIG M #
+#########
+
 M = 10**10
 
 #########################
@@ -85,25 +90,25 @@ model.update()
 
 #RESTRICCIONES
 
-model.addConstrs(((acu[i,t] * (x[i,t] + h[i,t]) * ec[i,r])/(365) <= RP for i in Plantas for t in Tiempo for r in Region), name = "R2" ) 
+model.addConstrs(((acu[i,t] * (x[i,t] + h[i,t]) * ec[i,r])/(365) <= RP for i in Plantas for t in Tiempo for r in Region), name = "R1" ) 
 
-model.addConstrs((mda[i] * x[i,t] + mdn[i] * h[i,t] <= ((zpl[i] * dd[i]) + df[i] * (1 - zpl[i])) * cam for i in Plantas for t in Tiempo for i in Plantas), name = "R3" )
+model.addConstrs((mda[i] * x[i,t] + mdn[i] * h[i,t] <= ((zpl[i] * dd[i]) + df[i] * (1 - zpl[i])) * cam for i in Plantas for t in Tiempo for i in Plantas), name = "R2" )
 
-model.addConstrs((quicksum((x[i,t] + h[i,t]) * w[i,t] for i in Plantas) <= gem for t in Tiempo), name = "R4" )
+model.addConstrs((quicksum((x[i,t] + h[i,t]) * w[i,t] for i in Plantas) <= gem for t in Tiempo), name = "R3" )
 
-model.addConstrs((y[i,t] <= cam for i in Plantas for t in Tiempo), name = "R5.1")
-model.addConstrs((y[i,t] <= aa[i] for i in Plantas for t in Tiempo), name = "R5.2")
+model.addConstrs((y[i,t] <= cam for i in Plantas for t in Tiempo), name = "R4.1")
+model.addConstrs((y[i,t] <= aa[i] for i in Plantas for t in Tiempo), name = "R4.2")
 
-model.addConstrs((0.6 * y[i,t] >= x[i,t] for i in Plantas for t in Tiempo), name = "R6.1")
-model.addConstrs((0.8 * y[i,t] >= h[i,t] for i in Plantas for t in Tiempo), name = "R6.2")
+model.addConstrs((0.6 * y[i,t] >= x[i,t] for i in Plantas for t in Tiempo), name = "R5.1")
+model.addConstrs((0.8 * y[i,t] >= h[i,t] for i in Plantas for t in Tiempo), name = "R5.2")
 
-model.addConstrs((h[i,t] <= M * z[i] for i in Plantas for t in Tiempo), name = "R7.1")
-model.addConstrs( (x[i,t] <= M * (1 - z[i]) for i in Plantas for t in Tiempo), name = "R7.2")
+model.addConstrs((h[i,t] <= M * z[i] for i in Plantas for t in Tiempo), name = "R6.1")
+model.addConstrs( (x[i,t] <= M * (1 - z[i]) for i in Plantas for t in Tiempo), name = "R6.2")
 
-model.addConstrs((ii[r,t+1] == ii[r,t] + quicksum((x[i,t] + h[i,t])* air[i,r] for i in Plantas) - d[r,t]*a[r] for t in range(2, 19 + 1) for r in Region), name = "R8.1")
-model.addConstrs((ii[r,1] == 0 for r in Region), name = "R8.2")
+model.addConstrs((ii[r,t+1] == ii[r,t] + quicksum((x[i,t] + h[i,t])* air[i,r] for i in Plantas) - d[r,t]*a[r] for t in range(2, 19 + 1) for r in Region), name = "R7.1")
+model.addConstrs((ii[r,1] == 0 for r in Region), name = "R7.2")
 
-model.addConstrs((ii[r,t] <= capi[r] for r in Region for t in Tiempo), name = "R9")
+model.addConstrs((ii[r,t] <= capi[r] for r in Region for t in Tiempo), name = "R8")
 
 
 # #FUNCION OBJETIVO
