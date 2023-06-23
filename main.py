@@ -105,7 +105,7 @@ model.addConstrs((0.8 * y[i,t] >= h[i,t] for i in Plantas for t in Tiempo), name
 model.addConstrs((h[i,t] <= M * z[i] for i in Plantas for t in Tiempo), name = "R6.1")
 model.addConstrs( (x[i,t] <= M * (1 - z[i]) for i in Plantas for t in Tiempo), name = "R6.2")
 
-model.addConstrs((ii[r,t+1] == ii[r,t] + quicksum((x[i,t] + h[i,t])* air[i,r] for i in Plantas) - d[r,t]*a[r] for t in range(2, 19 + 1) for r in Region), name = "R7.1")
+model.addConstrs((ii[r,t+1] == ii[r,t] + quicksum((x[i,t] + h[i,t])* air[i,r] for i in Plantas) - d[r,t]*a[r] for t in range(1, 19 + 1) for r in Region), name = "R7.1")
 model.addConstrs((ii[r,1] == 0 for r in Region), name = "R7.2")
 
 model.addConstrs((ii[r,t] <= capi[r] for r in Region for t in Tiempo), name = "R8")
@@ -161,3 +161,10 @@ print('\n################################ DESECHOS #############################
 for i in Plantas:
     if int(zpl[i].x) == 1:
         print(f'La planta {i} emitira sus desechos dentro de la zona de proteccion litoral')
+
+
+print('Solucion Optima:' , solucion_optima)
+
+#print('Produce' , quicksum(x[i,t].x + h[i,t].x for i in Plantas for t in Tiempo) )
+
+print((solucion_optima - 24544.25579018867)*100/(solucion_optima), "%")
