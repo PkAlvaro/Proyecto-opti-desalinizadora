@@ -161,10 +161,3 @@ print('\n################################ DESECHOS #############################
 for i in Plantas:
     if int(zpl[i].x) == 1:
         print(f'La planta {i} emitira sus desechos dentro de la zona de proteccion litoral')
-
-
-print('Solucion Optima:' , solucion_optima)
-
-#print('Produce' , quicksum(x[i,t].x + h[i,t].x for i in Plantas for t in Tiempo) )
-
-print((solucion_optima - 24544.25579018867)*100/(solucion_optima), "%")
